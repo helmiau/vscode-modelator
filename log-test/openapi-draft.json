@@ -1,0 +1,41 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Observed API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/models": {
+      "options": {
+        "summary": "OPTIONS /v1/models",
+        "description": "Observed 1 call(s) from local browser traffic.",
+        "responses": {
+          "401": {
+            "description": "Observed 401",
+            "content": {
+              "application/json": {
+                "schema": {},
+                "example": ""
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "GET /v1/models",
+        "description": "Observed 1 call(s) from local browser traffic.",
+        "responses": {
+          "200": {
+            "description": "Observed 200",
+            "content": {
+              "application/json": {
+                "schema": {},
+                "example": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

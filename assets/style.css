@@ -1866,15 +1866,37 @@ body[data-panel="editor"] .pipebar-fields {
     z-index: 1410;
 }
 .pipebar-fields {
-    display: grid; align-items: end;
+    display: grid; align-items: start;
     grid-template-columns: 150px minmax(0, 1fr);
-    grid-template-areas: "output output" "os install" "install-btn install-btn";
+    grid-template-areas: "header header" "output output" "os install" "install-btn install-btn";
     gap: var(--spacing-3) var(--spacing-4);
     padding: var(--spacing-3) var(--spacing-4);
     border-bottom: 1px solid var(--color-border);
     background: color-mix(in srgb, var(--color-bg-muted) 80%, transparent);
     -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
 }
+.pipe-fields-header {
+    grid-area: header;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: var(--spacing-2) 0;
+    border-bottom: 1px solid var(--color-border-emphasized);
+}
+.pipe-fields-title {
+    font-size: 0.875rem; font-weight: 600; color: var(--color-text-primary);
+}
+.pipe-exit-btn {
+    width: 28px; height: 28px; padding: 0; border-radius: var(--radius-full);
+    background: transparent; color: var(--color-error);
+    border: 1px solid var(--color-border-emphasized); cursor: pointer;
+    display: grid; place-items: center;
+    transition: all 150ms cubic-bezier(0.22,1,0.36,1);
+}
+.pipe-exit-btn:hover { 
+    background: var(--color-error); 
+    color: #fff; 
+    border-color: var(--color-error);
+}
+.pipe-exit-btn:active { transform: scale(0.92); }
 .pipe-field-output { grid-area: output; }
 .pipe-field-grow { grid-area: install; }
 .pipe-field-os { grid-area: os; }

@@ -89,10 +89,20 @@
                 </div>
 
                 <div id="corsHint" class="hint-box cors-hint hidden">
-                    <strong>🔒 Mixed content blocked?</strong><br>Browser from <code>https://</code> page cannot fetch <code>http://localhost</code>.<br><br>                    <strong>✅ Best solution — run app server (same-origin, no CORS):</strong><br>
+                    <strong>🔒 Mixed content blocked?</strong><br>Browser from <code>https://</code> page cannot fetch <code>http://localhost</code>.<br><br>
+                    <strong>✅ Solution — start the relay:</strong><br>
                     <code style="display:block;margin:6px 0;padding:6px 10px;background:var(--color-bg-muted);border-radius:6px">python scripts/localhost_relay.py --app --api-url http://localhost:20128</code>
                     <span style="display:block;margin:4px 0 8px;font-size:0.9em">Then open <strong>http://127.0.0.1:9877/</strong></span>
-                    <strong>Other options:</strong><br>• WebSocket relay: <code>python scripts/localhost_relay.py --http</code><br>• Open page via <code>file://</code> — double-click <code>index.html</code><br>• Paste JSON using section above<br>• Use scripts from <strong>Scripts</strong> tab
+                    <strong>Or use one of these:</strong><br>
+                    • WebSocket relay: <code>python scripts/localhost_relay.py --http</code><br>
+                    • Open page via <code>file://</code> — double-click <code>index.html</code><br>
+                    • Paste JSON using section above<br>
+                    • Use scripts from <strong>Scripts</strong> tab
+                    <br><br>
+                    <button class="pipe-btn pipe-btn-accent" onclick="downloadRelayScript()" style="margin-top:8px">
+                        <span class="material-symbols-outlined pipe-glyph">download</span>
+                        <span class="pipe-text">Unduh Relay</span>
+                    </button>
                 </div>
                 <div id="installHint" class="hint-box install-hint hidden">
                     <div class="curl-header">
@@ -250,6 +260,12 @@
     <!-- Pipeline bar (sticky bottom): add endpoint · fetch → merge → generate → install + install options -->
     <div class="pipebar" id="pipebar">
         <div class="pipebar-fields hidden" id="pipebarFields">
+            <div class="pipe-fields-header">
+                <span class="pipe-fields-title" data-i18n="pipe.settings_title">Editor Settings</span>
+                <button type="button" class="pipe-btn pipe-exit-btn" id="pipeExitBtn" onclick="togglePipeFields()" data-i18n-title="pipe.exit" title="Close">
+                    <span class="pipe-ic"><span class="material-symbols-outlined pipe-glyph">close</span></span>
+                </button>
+            </div>
             <label class="pipe-field pipe-field-output">
                 <span class="pipe-field-label" data-i18n="pipe.output_label">Output file name</span>
                 <input type="text" id="pipeOutputFile" value="chatLanguageModels.json" spellcheck="false" autocomplete="off">

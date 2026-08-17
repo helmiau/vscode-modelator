@@ -1,0 +1,105 @@
+[
+  {
+    "id": "5f2fd5ea-8901-42e5-8913-0f39dc40d714",
+    "source": "web-request",
+    "tabId": 29,
+    "frameId": 0,
+    "pageUrl": "https://www.helmiau.com/vscode-modelator/?v=1786371678942",
+    "origin": "https://ai.helminet.my.id",
+    "method": "OPTIONS",
+    "url": "https://ai.helminet.my.id/v1/models",
+    "requestHeaders": {
+      "Host": "ai.helminet.my.id",
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:153.0) Gecko/20100101 Firefox/153.0",
+      "Accept": "*/*",
+      "Accept-Language": "en-US,en;q=0.9",
+      "Accept-Encoding": "gzip, deflate, br, zstd",
+      "Access-Control-Request-Method": "GET",
+      "Access-Control-Request-Headers": "authorization",
+      "Referer": "https://www.helmiau.com/",
+      "Origin": "https://www.helmiau.com",
+      "Connection": "keep-alive",
+      "Sec-Fetch-Dest": "empty",
+      "Sec-Fetch-Mode": "cors",
+      "Sec-Fetch-Site": "cross-site"
+    },
+    "requestBody": null,
+    "status": 401,
+    "statusText": "HTTP/2.0 401 ",
+    "responseHeaders": {
+      "date": "Mon, 17 Aug 2026 12:58:18 GMT",
+      "content-type": "application/json",
+      "content-encoding": "gzip",
+      "vary": "Accept-Encoding",
+      "cf-cache-status": "DYNAMIC",
+      "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+      "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=syJ%2FHiDjnuHP5y5v4nW9jWt4mYpp7q3khgyGNjPY1m%2B4lJl9lzPvbvq%2FP511vQCCuvsrsjgIVt%2Fe8VMIBkdsiSy0Q%2Bd2xJMHko5vuJx04KoSuY5AWDQi%2BffZk7zjXtxQ1TlPBeMzPuTmfjrNTCN9GQ%3D%3D\"}]}",
+      "server": "cloudflare",
+      "cf-ray": "a2c8d97aef196590-SIN",
+      "alt-svc": "h3=\":443\"; ma=86400",
+      "X-Firefox-Spdy": "h2"
+    },
+    "responseBody": {
+      "kind": "text",
+      "value": "",
+      "truncated": false,
+      "sizeBytes": 0
+    },
+    "resourceType": "xmlhttprequest",
+    "mimeType": "application/json",
+    "startedAt": "2026-08-17T12:58:17.996Z",
+    "completedAt": "2026-08-17T12:58:18.371Z",
+    "durationMs": 373,
+    "metadata": {
+      "requestId": "22661",
+      "fromDiskCache": false,
+      "normalizedEndpoint": "/v1/models"
+    },
+    "error": "NS_ERROR_DOM_BAD_URI"
+  },
+  {
+    "id": "724ffdc1-020a-42ef-942a-52391ab2b8af",
+    "source": "web-request",
+    "tabId": 29,
+    "frameId": 0,
+    "pageUrl": "https://www.helmiau.com/vscode-modelator/?v=1786371678942",
+    "origin": "https://ai.helminet.my.id",
+    "method": "GET",
+    "url": "https://ai.helminet.my.id/v1/models",
+    "requestHeaders": {
+      "Host": "ai.helminet.my.id",
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:153.0) Gecko/20100101 Firefox/153.0",
+      "Accept": "application/json",
+      "Accept-Language": "en-US,en;q=0.9",
+      "Accept-Encoding": "gzip, deflate, br, zstd",
+      "Referer": "https://www.helmiau.com/",
+      "Authorization": "[REDACTED]",
+      "Origin": "https://www.helmiau.com",
+      "Connection": "keep-alive",
+      "Sec-Fetch-Dest": "empty",
+      "Sec-Fetch-Mode": "cors",
+      "Sec-Fetch-Site": "cross-site"
+    },
+    "requestBody": null,
+    "status": null,
+    "statusText": null,
+    "responseHeaders": {},
+    "responseBody": {
+      "kind": "text",
+      "value": "",
+      "truncated": false,
+      "sizeBytes": 0
+    },
+    "resourceType": "xmlhttprequest",
+    "mimeType": null,
+    "startedAt": "2026-08-17T12:58:17.984Z",
+    "completedAt": "2026-08-17T12:58:18.370Z",
+    "durationMs": 384,
+    "metadata": {
+      "requestId": "22660",
+      "fromDiskCache": false,
+      "normalizedEndpoint": "/v1/models"
+    },
+    "error": "NS_ERROR_DOM_BAD_URI"
+  }
+]

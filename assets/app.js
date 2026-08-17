@@ -134,7 +134,7 @@ function switchPanel(name) {
     if (home) home.classList.toggle('hidden', name === 'editor');
     if (ed) ed.classList.toggle('hidden', name !== 'editor');
     const ctx = $('pipebarContext');
-    /* find/edit row lives only in editor + code view — hide everywhere else */
+    /* find/edit row lives only in editor panel and code view */
     if (ctx) ctx.classList.toggle('hidden', name !== 'editor' || currentView !== 'json');
     if (name === 'editor') {
         const f = $('pipebarFields');
@@ -1788,6 +1788,22 @@ function pipeGenerate(btn) {
 }
 
 // --- Download / Copy ---
+
+function downloadRelayScript() {
+    const script = `#!/usr/bin/env python3
+"""9Router Localhost Relay — same-origin app + API proxy."""
+import subprocess, sys, os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+subprocess.run([sys.executable, "scripts/localhost_relay.py", "--app", "--api-url", "http://localhost:20128"])
+`;
+    const blob = new Blob([script], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'start_relay.py';
+    a.click();
+    URL.revokeObjectURL(a.href);
+    log('action', 'Downloaded relay helper script');
+}
 
 function download() {
     const json = aceEditor ? aceEditor.getValue().trim() : (lastResult ? JSON.stringify(lastResult, null, '\t') : '');

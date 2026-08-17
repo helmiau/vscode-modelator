@@ -31,8 +31,7 @@ from urllib.parse import urlparse, parse_qs
 try:
     import websockets
 except ImportError:
-    print("WARN: websockets package not installed (WebSocket mode unavailable).")
-    print("Install with: pip install websockets")
+    print("unduh dan jalankan helper script")
     websockets = None
 
 # --- Configuration ---
@@ -402,8 +401,7 @@ async def main():
 
     if not args.http_only:
         if websockets is None:
-            print("ERROR: websockets package required for WebSocket mode.")
-            print("Install: pip install websockets")
+            print("unduh dan jalankan helper script")
             sys.exit(1)
         banner.append(f"\u2551  WebSocket relay \u2192 ws://{args.host}:{args.port}      \u2551")
 
@@ -436,8 +434,7 @@ if __name__ == "__main__":
         print("\nRelay stopped.")
     except OSError as e:
         if "address already in use" in str(e).lower() or "10048" in str(e):
-            print(f"ERROR: Port {OUTPUT_PORT} is already in use.")
-            print(f"Try: python localhost_relay.py --port {OUTPUT_PORT + 1}")
+            print("unduh dan jalankan helper script")
         else:
             print(f"ERROR: {e}")
         sys.exit(1)
