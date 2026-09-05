@@ -25,7 +25,7 @@
     --color-on-accent: #171717;
     --color-text-primary: #fafafa;
     --color-text-secondary: #a3a3a3;
-    --color-text-disabled: #525252;
+    --color-text-disabled: #767676;
     --color-text-accent: #ebebeb;
     --color-border: rgba(255,255,255,0.1);
     --color-border-emphasized: #525252;
@@ -79,7 +79,7 @@ body.light {
     --color-on-accent: #ffffff;
     --color-text-primary: #171717;
     --color-text-secondary: #737373;
-    --color-text-disabled: #a3a3a3;
+    --color-text-disabled: #6b6b6b;
     --color-text-accent: #262626;
     --color-border: #ebebeb;
     --color-border-emphasized: #d4d4d4;
@@ -117,15 +117,16 @@ body.light {
     from { opacity: 0; transform: translateY(-8px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+/* ponytail: transform-only slide (no max-height/padding) — avoids layout reflow; upgrade to FLIP if height animation needed */
 .slide-up-in { animation: slideUpIn 300ms both; animation-timing-function: cubic-bezier(0.05,0.7,0.1,1.0); }
 @keyframes slideUpIn {
-    from { opacity: 0; max-height: 0; padding-top: 0; padding-bottom: 0; transform: translateY(4px); }
-    to   { opacity: 1; max-height: 80px; padding-top: var(--spacing-3); padding-bottom: var(--spacing-3); transform: translateY(0); }
+    from { opacity: 0; transform: translateY(4px) scaleY(0.9); transform-origin: top; }
+    to   { opacity: 1; transform: translateY(0) scaleY(1); }
 }
 .slide-up-out { animation: slideUpOut 200ms both; animation-timing-function: cubic-bezier(0.22,1,0.36,1); }
 @keyframes slideUpOut {
-    from { opacity: 1; max-height: 80px; transform: translateY(0); }
-    to   { opacity: 0; max-height: 0; padding-top: 0; padding-bottom: 0; transform: translateY(-4px); }
+    from { opacity: 1; transform: translateY(0) scaleY(1); }
+    to   { opacity: 0; transform: translateY(-4px) scaleY(0.9); }
 }
 .crossfade-in { animation: crossfadeIn 250ms both; animation-timing-function: cubic-bezier(0.05,0.7,0.1,1.0); }
 @keyframes crossfadeIn {
@@ -158,13 +159,15 @@ body.light {
     to   { opacity: 0; max-height: 0; margin-top: 0; padding: 0; border-width: 0; transform: translateY(-4px); }
 }
 
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:var(--color-blue);color:#fff;padding:8px 16px;border-radius:var(--radius-inner);font-size:0.875rem;font-weight:600;text-decoration:none}
+.skip-link:focus{left:8px;top:8px;width:auto;height:auto}
 body {
     font-family: var(--font-body);
     background: var(--color-bg-body);
     color: var(--color-text-primary);
     min-height: 100vh;
     min-height: 100dvh; /* mobile browsers: URL bar shrinks viewport */
-    font-size: 0.875rem;
+    font-size: 1rem;
     line-height: var(--line-height-normal);
     letter-spacing: var(--tracking-normal);
     -webkit-font-smoothing: antialiased;
@@ -177,11 +180,12 @@ body {
 .topbar {
     display: flex; align-items: center; justify-content: space-between;
     height: 54px; padding: 0 var(--spacing-5);
+    padding-top: env(safe-area-inset-top);
     background: var(--color-bg-inverted);
     border-bottom: 1px solid var(--color-border);
     flex-shrink: 0; z-index: 30;
 }
-.topbar-left { display: flex; align-items: center; gap: var(--spacing-3); min-width: 0; }
+.topbar-left { display: flex; align-items: center; gap: var(--spacing-3); min-width: 0; border:none;background:transparent;cursor:pointer;padding:0;font:inherit;color:inherit;text-align:left;min-height:44px; }
 .topbar-icon { font-size: 1.35rem; color: var(--color-blue); flex-shrink: 0; }
 .topbar-title-group { display: flex; flex-direction: column; min-width: 0; }
 .topbar-title { font-size: 0.9rem; font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -264,7 +268,7 @@ body {
 .sidebar-item {
     position: relative;
     display: flex; align-items: center; justify-content: center; gap: 0;
-    height: 40px; padding: 0; margin: 0;
+    min-height: 44px; height: 44px; padding: 0; margin: 0;
     border-radius: var(--radius-inner); border: none;
     background: transparent; color: var(--color-text-secondary);
     cursor: pointer; white-space: nowrap; overflow: hidden;
@@ -312,7 +316,7 @@ body {
 .sidebar-collapse-btn {
     position: relative;
     display: flex; align-items: center; justify-content: center; gap: 0;
-    height: 40px; padding: 0; margin: 0;
+    min-height: 44px; height: 44px; padding: 0; margin: 0;
     border-radius: var(--radius-inner); border: none;
     background: transparent; color: var(--color-text-secondary);
     cursor: pointer; white-space: nowrap; overflow: hidden;
@@ -385,7 +389,7 @@ body.light .sidebar-item .icon-light { display: inline; }
 
 /* --- Close button (all 6 states) --- */
 .modal-close-btn {
-    width: 28px; height: 28px; border-radius: var(--radius-full);
+    min-width: 44px; min-height: 44px; width: 44px; height: 44px; border-radius: var(--radius-full);
     border: none; background: transparent; color: var(--color-text-disabled);
     cursor: pointer; display: flex; align-items: center; justify-content: center;
     padding: 0;
@@ -491,7 +495,7 @@ body.light .sidebar-item .icon-light { display: inline; }
 .main-panel { flex: 1; min-width: 0; overflow-y: auto; padding: var(--spacing-6); }
 
 /* --- Main form container --- */
-.container { width: 100%; max-width: 560px; margin: 0 auto; }
+.container { width: 100%; max-width: 720px; margin: 0 auto; }
 h1 { font-size: 1.25rem; font-weight: 600; margin-bottom: var(--spacing-1); display: flex; align-items: center; gap: var(--spacing-2); }
 h1 .material-symbols-outlined { font-size: 1.5rem; color: var(--color-blue); }
 .subtitle { color: var(--color-text-secondary); font-size: 0.75rem; margin-bottom: var(--spacing-6); }
@@ -516,6 +520,7 @@ label {
 .input-row input { flex: 1; border-radius: var(--radius-inner) 0 0 var(--radius-inner); height: var(--size-element-md); }
 input, textarea {
     width: 100%; height: var(--size-element-md);
+    font-size: 16px; /* 16px prevents iOS auto-zoom on focus */
     background: var(--color-bg-card); border: 1px solid var(--color-border);
     border-radius: var(--radius-inner); padding: 0 var(--spacing-3);
     color: var(--color-text-primary); font-family: inherit; font-size: 0.875rem;
@@ -835,6 +840,12 @@ button:disabled { background: var(--color-accent-muted); border-color: var(--col
 .cors-hint {
     font-size: 0.78rem;
 }
+.cors-hint .cors-cmd {
+    display: block; margin: 6px 0; padding: 6px 10px;
+    background: var(--color-bg-muted); border-radius: 6px;
+}
+.cors-hint .cors-then { display: block; margin: 4px 0 8px; font-size: 0.9em; }
+.cors-hint .cors-relay-btn { margin-top: 8px; }
 
 /* --- Status --- */
 .status {
@@ -886,7 +897,7 @@ button:disabled { background: var(--color-accent-muted); border-color: var(--col
     margin-bottom: var(--spacing-2); overflow: hidden;
     display: flex; align-items: center; gap: var(--spacing-2);
 }
-.curl-box code { background: none; padding: 0; font-size: 0.75rem; white-space: pre; -webkit-user-select: all; user-select: all; flex: 1 1 0; min-width: 0; overflow-x: auto; }
+.curl-box code { background: none; padding: 0; font-size: 0.75rem; white-space: pre; overflow-wrap: anywhere; -webkit-user-select: all; user-select: all; flex: 1 1 0; min-width: 0; overflow-x: auto; }
 .copy-curl-btn {
     display: inline-flex !important; align-items: center; gap: 2px;
     width: auto !important; height: auto !important; padding: 2px var(--spacing-2) !important;
@@ -1068,7 +1079,7 @@ button:disabled { background: var(--color-accent-muted); border-color: var(--col
 }
 .panel-header-actions { display: flex; gap: 2px; }
 .panel-btn {
-    width: 28px !important; height: 28px !important; padding: 0 !important;
+    min-width: 44px !important; min-height: 44px !important; width: 44px !important; height: 44px !important; padding: 0 !important;
     border: none !important; border-radius: var(--radius-inner) !important;
     background: transparent !important; color: var(--color-text-secondary) !important;
     cursor: pointer; display: flex !important; align-items: center !important; justify-content: center !important;
@@ -1123,7 +1134,7 @@ button:disabled { background: var(--color-accent-muted); border-color: var(--col
 .tree-selbar-count { flex: 1; font-weight: 600; color: var(--color-blue); }
 .tree-selbar-del { color: var(--color-error) !important; }
 .tree-selbar-del:hover { background: rgba(255, 138, 128, 0.16) !important; color: var(--color-error) !important; }
-.tree-check { width: 14px; height: 14px; accent-color: var(--color-blue); margin: 0; flex-shrink: 0; cursor: pointer; }
+.tree-check { width: 18px; height: 18px; accent-color: var(--color-blue); margin: 0; flex-shrink: 0; cursor: pointer; min-width: 18px; min-height: 18px; }
 .tree-row.selected { background: color-mix(in srgb, var(--color-blue-muted) 45%, transparent); }
 .tree-row.selected:hover { background: color-mix(in srgb, var(--color-blue-muted) 60%, transparent); }
 .tree-editable { cursor: text; border-bottom: 1px dashed transparent; }
@@ -1515,6 +1526,7 @@ h1 {
     letter-spacing: var(--tracking-tight);
     line-height: var(--line-height-tight);
 }
+.topbar-title { margin: 0; }
 
 /* --- Code / mono inline --- */
 code, .paste-area, .tree-view, .log-body, .curl-box code,
@@ -1531,6 +1543,7 @@ code, .paste-area, .tree-view, .log-body, .curl-box code,
     transition: opacity 350ms cubic-bezier(0.22,1,0.36,1);
 }
 .nav-overlay.nav-open { opacity: 1; pointer-events: auto; }
+.topbar-left:focus-visible{outline:2px solid var(--color-blue);outline-offset:2px}
 .topbar-left { cursor: pointer; }
 
 /* --- Reset modal actions --- */
@@ -1991,4 +2004,9 @@ body[data-panel="editor"] .pipebar-fields {
     .pipebar-fields.hidden { display: flex !important; }
     /* editor panel: fields are a toggleable popover — honor hidden */
     body[data-panel="editor"] .pipebar-fields.hidden { display: none !important; }
+    /* persistent sidebar on desktop */
+    .sidebar{position:sticky;top:0;transform:none !important;box-shadow:none;z-index:10;flex-shrink:0;height:100vh;height:100dvh}
+    .nav-overlay{display:none !important}
+    #sidebarHoverZone{display:none !important}
+    .app-wrapper{overflow:visible}
 }
